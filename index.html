@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task & Habit Tracker</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <style>
+        #tasklist{
+            width: 90%;
+            border: 2px solid black;
+            height: 50vh;
+            z-index: 100;
+            overflow: scroll;
+        }
+        body{
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button class="btn btn-primary" data-bs-target="#form-create-new-task" data-bs-toggle="modal">Create new task</button>
+        <button class="btn btn-primary" data-bs-target="#filter" data-bs-toggle="modal">Filter</button>
+        <button class="btn btn-primary" onclick="onRefresh()">Refresh</button>
+    </div>
+    <div class="mx-auto p-2 position-fixed top-50 start-50 translate-middle w-100">
+        <div id="tasklist"">
+            
+        </div>
+        <strong>Dashboard:</strong>
+        <div class="dashboard">
+            <p class="total"></p>
+            <p class="completed"></p>
+            <p class="pending"></p>
+            <p class="overdue"></p>
+            <p class="progress_"></p>
+        </div>
+    </div>
+    
+
+
+    <div class="modal fade" id="form-create-new-task" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Create Task</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Show a second modal and hide this one with the button below. -->
+                    <form>
+                        <div class="mb-3">
+                            <label for="title" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="col-form-label">Category:</label>
+                            <input type="text" class="form-control" id="category">
+                        </div>
+                        <div class="mb-3">
+                            <label for="due-date" class="col-form-label">Due Date:</label>
+                            <input type="datetime-local" class="form-control" id="due-date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="col-form-label">Status:</label>
+                            <select class="form-control" id="status">
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#create" data-bs-toggle="modal" id="btn-create-new" onclick="save()">Save & Create New Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="filter" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Filter</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Show a second modal and hide this one with the button below. -->
+                    <form>
+                        <div class="mb-3">
+                            <label for="title" class="col-form-label">Filter Title (Leave empty for no filter):</label>
+                            <input type="text" class="form-control" id="ftitle">
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="col-form-label">Category (Leave empty for no filter):</label>
+                            <input type="text" class="form-control" id="fcategory">
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="col-form-label">Status:</label>
+                            <select class="form-control" id="fstatus">
+                                <option value="any">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#filter" data-bs-toggle="modal" id="btn-create-new" onclick="filter()">Show filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
